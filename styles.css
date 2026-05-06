@@ -128,7 +128,7 @@ a{color:inherit}
 /* Hero */
 .hero{
   position:relative;
-  padding:26px 0 110px;
+  padding:26px 0 132px;
   background:var(--paper);
   overflow:hidden;
 }
@@ -145,7 +145,7 @@ a{color:inherit}
   display:flex;
   align-items:center;
   gap:12px;
-  margin-bottom:40px;
+  margin-bottom:62px;
 }
 .hero__brand-mark{
   width:28px;height:28px;border-radius:50%;
@@ -161,7 +161,7 @@ a{color:inherit}
 }
 .hero__content{grid-column:1}
 .hero__title{
-  margin:0 0 18px;
+  margin:0 0 24px;
   font-family:var(--font-title);
   font-weight:400;
   text-transform:uppercase;
@@ -172,7 +172,7 @@ a{color:inherit}
 }
 .hero__title-accent{display:inline-block}
 .hero__lead{
-  margin:0 0 34px;
+  margin:0 0 40px;
   color:#313131;
   font-size:18px;
   line-height:1.3;
