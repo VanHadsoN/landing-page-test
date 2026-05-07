@@ -28,3 +28,5 @@ build/
 # Env files
 .env
 .env.*
+
+*:Zone.Identifier
