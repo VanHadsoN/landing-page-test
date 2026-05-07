@@ -347,48 +347,110 @@ a{color:inherit}
 }
 
 /* Stages */
-.stages__layout{position:relative}
-.stages__viewport{overflow:hidden}
+.stages__layout{
+  position:relative;
+  --plane-right:-60px;
+  --plane-top:168px;
+  --plane-w:520px;
+  --plane-h:260px;
+}
+.stages__viewport{
+  overflow:hidden;
+  position:relative;
+  z-index:1;
+}
 .stages__track{
   list-style:none;
   padding:0;
   margin:0;
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "s1 s2 s3"
+    "s4 s5 s3"
+    "s6 s7 s7";
   gap:20px;
 }
+.stages__track > .stage:nth-child(1){grid-area:s1}
+.stages__track > .stage:nth-child(2){grid-area:s2}
+.stages__track > .stage:nth-child(3){grid-area:s3}
+.stages__track > .stage:nth-child(4){grid-area:s4}
+.stages__track > .stage:nth-child(5){grid-area:s5}
+.stages__track > .stage:nth-child(6){grid-area:s6}
+.stages__track > .stage:nth-child(7){grid-area:s7}
+
+/* Reserve space for the plane so text wraps like the reference */
+.stages__track > .stage:nth-child(7){
+  padding-right:320px;
+}
+
 .stage{
   position:relative;
-  min-height:112px;
-  border-radius:var(--radius);
+  border-radius:0;
   padding:20px 20px 20px 72px;
+  min-height:112px;
+  background-color:#e9ded4;
+  overflow:hidden;
+}
+.stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(0deg, rgba(255,255,255,.6), rgba(255,255,255,.6)),
-    radial-gradient(circle at 20% 20%, rgba(0,0,0,.06), rgba(0,0,0,0) 60%),
-    linear-gradient(135deg, rgba(233,222,212,.95), rgba(233,222,212,.65));
+    radial-gradient(circle at 22% 18%, rgba(0,0,0,.075), rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 80% 70%, rgba(0,0,0,.045), rgba(0,0,0,0) 58%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.16) 0 2px, rgba(255,255,255,0) 2px 6px),
+    linear-gradient(0deg, rgba(255,255,255,.62), rgba(255,255,255,.62));
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  z-index:0;
+}
+.stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 1px, rgba(0,0,0,0) 1px 12px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 1px, rgba(0,0,0,0) 1px 9px);
+  opacity:.35;
+  pointer-events:none;
+  z-index:0;
 }
 .stage__n{
   position:absolute;
-  left:20px; top:20px;
-  width:36px;height:36px;
+  left:20px;
+  top:20px;
+  width:36px;
+  height:36px;
   border-radius:50%;
   background:#fff;
   display:grid;
   place-items:center;
   font-weight:600;
+  z-index:2;
 }
-.stage__text{margin:0;font-size:18px;line-height:1.25;font-weight:500}
-.stage--wide{grid-column:span 2}
+.stage__text{
+  margin:0;
+  font-size:18px;
+  line-height:1.22;
+  font-weight:500;
+  z-index:2;
+  position:relative;
+}
+
 .stages__plane{
   position:absolute;
-  right:-20px;
-  top: 170px;
-  width:360px;height:200px;
-  opacity:.55;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(0,0,0,.15), rgba(0,0,0,0) 55%),
-    linear-gradient(90deg, rgba(0,0,0,.18), rgba(0,0,0,0));
-  mask:linear-gradient(90deg, transparent 0, #000 18%, #000 78%, transparent);
+  right:var(--plane-right);
+  top:var(--plane-top);
+  width:var(--plane-w);
+  height:var(--plane-h);
+  opacity:1;
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:contain;
+  background-image:url("./assets/images/image_3.png");
+  pointer-events:none;
+  z-index:1;
 }
 .stages__controls{
   display:none;
@@ -397,11 +459,18 @@ a{color:inherit}
   gap:16px;
   margin-top:28px;
 }
-.dots{display:flex;gap:8px}
+.stages .icon-btn{
+  width:36px;
+  height:36px;
+}
+.stages .icon-btn span{font-size:24px}
+.dots{display:flex;gap:10px}
 .dot{
-  width:10px;height:10px;border-radius:50%;
+  width:10px;
+  height:10px;
+  border-radius:50%;
   border:0;
-  background:rgba(31,31,31,.2);
+  background:rgba(31,31,31,.18);
   cursor:pointer;
   padding:0;
 }
@@ -419,13 +488,13 @@ a{color:inherit}
     padding:62px 20px 20px 20px;
     min-height:300px;
   }
+  .stages__track > .stage:nth-child(7){padding-right:20px}
   .stage__n{left:20px;top:20px}
-  .stage--wide{grid-column:auto}
   .stages__plane{
-    right:-34px;
-    top:-8px;
-    width:280px;
-    height:160px;
+    right:-28px;
+    top:-12px;
+    width:300px;
+    height:170px;
   }
   .stages__controls{display:flex}
 }
