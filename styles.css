@@ -271,23 +271,36 @@ a{color:inherit}
 }
 
 /* Support */
-.support__title{font-size:36px}
-.support__title-accent{color:var(--accent)}
-.support__grid{
-  margin-top:48px;
+.support__top{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:minmax(0, 1fr) 394px;
   gap:40px;
   align-items:start;
 }
-.support__photo{
+.support__title{font-size:36px}
+.support__title-accent{color:var(--accent)}
+.support__grid{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:474px minmax(0, 1fr);
+  gap:44px;
+  align-items:start;
+}
+.support__figure{margin:0}
+.support__photo--oval{
   width:100%;
-  aspect-ratio: 4 / 3;
-  border-radius:var(--radius);
+  aspect-ratio: 394 / 250;
+  border-radius:999px;
   background:
-    radial-gradient(circle at 30% 25%, rgba(0,0,0,.06), rgba(0,0,0,0) 55%),
-    linear-gradient(135deg, rgba(233,222,212,.9), rgba(233,222,212,.35));
+    url("./assets/images/image_2.png") center / cover no-repeat,
+    linear-gradient(135deg, rgba(233,222,212,.95), rgba(233,222,212,.35));
   border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+}
+.support__collage{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  background: url("./assets/images/image_1.png") left top / contain no-repeat;
 }
 .support__details-title{
   margin:0 0 22px;
@@ -298,12 +311,13 @@ a{color:inherit}
   font-size:36px;
   line-height:1.15;
 }
+.support__details-title em{font-style:normal;color:var(--accent)}
 .info{margin:0 0 20px;padding:0}
 .info__row{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  padding:14px 0;
+  grid-template-columns:306px minmax(0, 1fr);
+  gap:20px;
+  padding:14px 0 12px;
   border-bottom:1px solid var(--stroke);
 }
 .info__row:first-child{border-top:1px solid var(--stroke)}
@@ -317,10 +331,18 @@ a{color:inherit}
   font-weight:500;
 }
 .support__note{margin:0;color:var(--blue)}
+@media (max-width: 1100px){
+  .support__top{grid-template-columns:1fr 320px;gap:28px}
+  .support__grid{grid-template-columns:420px minmax(0, 1fr);gap:32px}
+  .info__row{grid-template-columns:260px minmax(0, 1fr)}
+}
 @media (max-width: 980px){
-  .support__grid{grid-template-columns:1fr;gap:28px}
+  .support__top{grid-template-columns:1fr;gap:20px}
+  .support__grid{grid-template-columns:1fr;gap:26px;margin-top:28px}
   .support__details-title{font-size:28px}
   .support__title{font-size:28px}
+  .support__photo--oval{max-width:460px}
+  .support__collage{max-width:520px}
   .info__row{grid-template-columns:1fr}
 }
 
