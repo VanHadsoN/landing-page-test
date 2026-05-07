@@ -6,6 +6,7 @@
   --paper:#e9ded4;
   --stroke:rgba(49,49,49,.2);
   --blue:#3057a2;
+  --yellow:#fbce51;
 
   --radius:12px;
   --container:1222px;
@@ -104,7 +105,7 @@ a{color:inherit}
 .btn:focus-visible{outline:3px solid rgba(48,87,162,.35);outline-offset:2px}
 .btn:hover{transform:translateY(-1px)}
 .btn--primary{background:#1f1f1f;color:#fff}
-.btn--primary:hover{background:#000}
+.btn--primary:hover{background:var(--yellow);color:#1f1f1f}
 .btn--ghost{background:#fff;border-color:#1f1f1f;color:#1f1f1f}
 .btn--ghost:hover{background:#1f1f1f;color:#fff}
 .btn--small{padding:10px 14px;border-color:var(--blue);color:var(--blue);background:transparent;font-size:14px}
