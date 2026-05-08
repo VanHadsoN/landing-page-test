@@ -142,23 +142,31 @@ a{color:inherit}
   gap:32px;
 }
 .hero__brand{
-  grid-column:1 / -1;
+  grid-column:1;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:0px;
   margin-bottom:62px;
+  margin-left:-10px;
+  --brand-text-size:16px;
+  --brand-text-line:1.05;
 }
 .hero__brand-mark{
-  width:28px;height:28px;border-radius:50%;
-  background:conic-gradient(from 220deg, #1f1f1f, #1f1f1f 70%, transparent 70%);
-  box-shadow:0 0 0 2px #1f1f1f inset;
+  width:auto;
+  height:calc(var(--brand-text-size) * var(--brand-text-line) * 5);
+  flex:0 0 auto;
+  object-fit:contain;
+  max-width:none;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
 }
 .hero__brand-text{
   font-weight:700;
   letter-spacing:.04em;
   text-transform:uppercase;
-  font-size:16px;
-  line-height:1.05;
+  font-size:var(--brand-text-size);
+  line-height:var(--brand-text-line);
 }
 .hero__content{grid-column:1;padding-right:40px}
 .hero__title{
