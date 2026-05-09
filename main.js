@@ -26,43 +26,53 @@ function initSmoothAnchors() {
 }
 
 function initTicker() {
-  const track = document.querySelector("[data-ticker]");
-  if (!track) return;
+  const tracks = document.querySelectorAll("[data-ticker]");
+  if (tracks.length === 0) return;
 
-  // Duplicate content until it reliably covers > 2x viewport width
-  const baseItems = Array.from(track.children);
-  if (baseItems.length === 0) return;
+  const rebuilders = [];
 
-  function rebuild() {
-    // reset to base
-    track.innerHTML = "";
-    baseItems.forEach((n) => track.appendChild(n.cloneNode(true)));
+  tracks.forEach((track) => {
+    const baseItems = Array.from(track.children);
+    if (baseItems.length === 0) return;
 
-    const minWidth = window.innerWidth * 2.2;
-    let safety = 0;
-    while (track.scrollWidth < minWidth && safety < 12) {
+    function rebuild() {
+      // reset to base
+      track.innerHTML = "";
       baseItems.forEach((n) => track.appendChild(n.cloneNode(true)));
-      safety += 1;
+
+      const minWidth = window.innerWidth * 2.2;
+      let safety = 0;
+      while (track.scrollWidth < minWidth && safety < 12) {
+        baseItems.forEach((n) => track.appendChild(n.cloneNode(true)));
+        safety += 1;
+      }
+
+      // shift = width of one "base" sequence
+      const temp = document.createElement("div");
+      temp.style.cssText =
+        "position:absolute;visibility:hidden;pointer-events:none;display:flex;gap:14px;padding:16px 0;";
+      baseItems.forEach((n) => temp.appendChild(n.cloneNode(true)));
+      document.body.appendChild(temp);
+      const baseWidth = temp.scrollWidth || track.scrollWidth / 2;
+      document.body.removeChild(temp);
+
+      track.style.setProperty("--ticker-shift", `${baseWidth}px`);
+
+      // duration: px/sec ratio for consistent speed
+      const pxPerSec = 110;
+      const duration = Math.max(10, Math.round(baseWidth / pxPerSec));
+      track.style.setProperty("--ticker-duration", `${duration}s`);
     }
 
-    // shift = width of one "base" sequence
-    const temp = document.createElement("div");
-    temp.style.cssText = "position:absolute;visibility:hidden;pointer-events:none;display:flex;gap:14px;padding:16px 0;";
-    baseItems.forEach((n) => temp.appendChild(n.cloneNode(true)));
-    document.body.appendChild(temp);
-    const baseWidth = temp.scrollWidth || track.scrollWidth / 2;
-    document.body.removeChild(temp);
+    rebuilders.push(rebuild);
+  });
 
-    track.style.setProperty("--ticker-shift", `${baseWidth}px`);
-
-    // duration: px/sec ratio for consistent speed
-    const pxPerSec = 110;
-    const duration = Math.max(10, Math.round(baseWidth / pxPerSec));
-    track.style.setProperty("--ticker-duration", `${duration}s`);
+  function rebuildAll() {
+    rebuilders.forEach((fn) => fn());
   }
 
-  rebuild();
-  window.addEventListener("resize", debounce(rebuild, 150), { passive: true });
+  rebuildAll();
+  window.addEventListener("resize", debounce(rebuildAll, 150), { passive: true });
 }
 
 function initRevealOnScroll() {
