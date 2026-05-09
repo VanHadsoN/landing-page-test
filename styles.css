@@ -108,7 +108,19 @@ a{color:inherit}
 .btn--primary:hover{background:var(--yellow);color:#1f1f1f}
 .btn--ghost{background:#fff;border-color:#1f1f1f;color:#1f1f1f}
 .btn--ghost:hover{background:#1f1f1f;color:#fff}
-.btn--small{padding:10px 14px;border-color:var(--blue);color:var(--blue);background:transparent;font-size:14px}
+.btn--small{
+  width:113px;
+  height:35px;
+  min-height:0;
+  padding:0;
+  border-color:var(--blue);
+  color:var(--blue);
+  background:transparent;
+  font-family:var(--font-ui);
+  font-weight:500;
+  font-size:16px;
+  line-height:1.2;
+}
 .btn--small:hover{background:var(--blue);color:#fff}
 
 .icon-btn{
@@ -512,7 +524,9 @@ a{color:inherit}
   width:320px;height:320px;
   border-radius:50%;
   margin:0 auto 26px;
+  overflow:hidden;
   background:
+    url("./assets/images/image_4.png") center calc(100% + 55px) / contain no-repeat,
     radial-gradient(circle at 50% 35%, rgba(0,0,0,.12), rgba(0,0,0,0) 60%),
     linear-gradient(135deg, rgba(233,222,212,.95), rgba(233,222,212,.35));
 }
