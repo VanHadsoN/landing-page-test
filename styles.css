@@ -89,6 +89,7 @@ a{color:inherit}
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  text-align:center;
   gap:10px;
   text-decoration:none;
   border-radius:66px;
