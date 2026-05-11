@@ -111,7 +111,12 @@ function initStagesSlider() {
     return window.matchMedia?.("(max-width: 900px)")?.matches ?? window.innerWidth <= 900;
   }
 
+  function isCompactMobile() {
+    return window.matchMedia?.("(max-width: 520px)")?.matches ?? window.innerWidth <= 520;
+  }
+
   function getSlidesCount() {
+    if (isCompactMobile()) return 5;
     return track.children.length;
   }
 
