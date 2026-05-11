@@ -116,7 +116,8 @@ function initStagesSlider() {
   }
 
   function getSlidesCount() {
-    if (isCompactMobile()) return 5;
+    if (isCompactMobile()) return track.children.length;
+    if (isMobile()) return track.querySelectorAll(".stage").length;
     return track.children.length;
   }
 
