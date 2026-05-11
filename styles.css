@@ -724,7 +724,7 @@ a{color:inherit}
 
 .footer{
   padding:40px 0 60px;
-  background:var(--bg);
+  background:var(--paper);
 }
 .footer__text{
   margin:0;
