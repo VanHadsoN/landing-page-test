@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
@@ -36,7 +34,6 @@ function initTicker() {
     if (baseItems.length === 0) return;
 
     function rebuild() {
-      // reset to base
       track.innerHTML = "";
       baseItems.forEach((n) => track.appendChild(n.cloneNode(true)));
 
@@ -47,7 +44,6 @@ function initTicker() {
         safety += 1;
       }
 
-      // shift = width of one "base" sequence
       const temp = document.createElement("div");
       temp.style.cssText =
         "position:absolute;visibility:hidden;pointer-events:none;display:flex;gap:14px;padding:16px 0;";
@@ -58,7 +54,6 @@ function initTicker() {
 
       track.style.setProperty("--ticker-shift", `${baseWidth}px`);
 
-      // duration: px/sec ratio for consistent speed
       const pxPerSec = 110;
       const duration = Math.max(10, Math.round(baseWidth / pxPerSec));
       track.style.setProperty("--ticker-duration", `${duration}s`);
@@ -117,12 +112,10 @@ function initStagesSlider() {
   }
 
   function getSlidesCount() {
-    // On desktop it's a grid, slider inactive.
     return track.children.length;
   }
 
   function getMaxIndex() {
-    // On mobile: design is a single-card viewport, non-looping.
     return Math.max(0, getSlidesCount() - 1);
   }
 
@@ -141,7 +134,6 @@ function initStagesSlider() {
 
   function updateUI() {
     if (!isMobile()) {
-      // reset transform and controls state (controls hidden by CSS anyway)
       track.style.transform = "";
       return;
     }
@@ -192,16 +184,14 @@ function initParticipantsCarousel() {
 
   if (elTotal) elTotal.textContent = String(total);
 
-  // Determine slides-per-view via media queries (sync with CSS breakpoints).
   function slidesPerView() {
     if (window.matchMedia?.("(max-width: 640px)")?.matches) return 1;
     if (window.matchMedia?.("(max-width: 1020px)")?.matches) return 2;
     return 3;
   }
 
-  // Looping via clones on both ends.
   let spv = slidesPerView();
-  let index = spv; // start after head clones
+  let index = spv;
   let isAnimating = false;
   let timer = null;
 
@@ -239,7 +229,6 @@ function initParticipantsCarousel() {
   function jumpTo(i) {
     track.style.transition = "none";
     track.style.transform = `translate3d(${-i * slideWidth()}px, 0, 0)`;
-    // force reflow
     track.getBoundingClientRect();
     track.style.transition = "";
   }
@@ -250,7 +239,7 @@ function initParticipantsCarousel() {
   }
 
   function updateCounter() {
-    const logical = ((index - spv) % total + total) % total; // 0..total-1
+    const logical = ((index - spv) % total + total) % total;
     if (elCurrent) elCurrent.textContent = String(logical + 1);
   }
 
@@ -305,7 +294,6 @@ function initParticipantsCarousel() {
     startAuto();
   });
 
-  // Pause on hover/focus (desktop)
   const root = document.querySelector("[data-participants]");
   root?.addEventListener("mouseenter", stopAuto);
   root?.addEventListener("mouseleave", startAuto);
