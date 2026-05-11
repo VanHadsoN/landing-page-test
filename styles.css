@@ -142,7 +142,7 @@ a{color:inherit}
 /* Hero */
 .hero{
   position:relative;
-  padding:26px 0 180px;
+  padding:26px 0 100px;
   background:var(--paper);
   overflow:hidden;
 }
@@ -202,7 +202,7 @@ a{color:inherit}
   z-index:1;
   background-image:url("./assets/images/hero_back.png");
   background-repeat:no-repeat;
-  background-position:center calc(100% + 24px);
+  background-position:center calc(100% + 80px);
   background-size:1200px auto;
 }
 
@@ -228,6 +228,7 @@ a{color:inherit}
 
 /* Ticker */
 .ticker{
+  margin-top:-2px;
   background:var(--accent);
   color:#fff;
   overflow:hidden;
