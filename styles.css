@@ -139,7 +139,6 @@ a{color:inherit}
 .icon-btn:hover:not([disabled]){transform:translateY(-1px);background:#000}
 .icon-btn span{font-size:28px;line-height:1;transform:translateY(-1px)}
 
-/* Hero */
 .hero{
   position:relative;
   padding:26px 0 100px;
@@ -226,7 +225,6 @@ a{color:inherit}
   .hero__content{padding-right:16px}
 }
 
-/* Ticker */
 .ticker{
   margin-top:-2px;
   background:var(--accent);
@@ -257,7 +255,6 @@ a{color:inherit}
   .ticker__track{animation:none}
 }
 
-/* Support */
 .support__top{
   display:grid;
   grid-template-columns:minmax(0, 1fr) 394px;
@@ -333,7 +330,6 @@ a{color:inherit}
   .info__row{grid-template-columns:1fr}
 }
 
-/* Stages */
 .stages__layout{
   position:relative;
   --plane-right:-60px;
@@ -366,7 +362,6 @@ a{color:inherit}
 .stages__track > .stage:nth-child(6){grid-area:s6}
 .stages__track > .stage:nth-child(7){grid-area:s7}
 
-/* Reserve space for the plane so text wraps like the reference */
 .stages__track > .stage:nth-child(7){
   padding-right:320px;
 }
@@ -486,7 +481,6 @@ a{color:inherit}
   .stages__controls{display:flex}
 }
 
-/* Participants carousel */
 .participants__head{align-items:center}
 .participants__controls{
   display:flex;
@@ -544,7 +538,6 @@ a{color:inherit}
   font-size:16px;
 }
 
-/* Reveal animation */
 .animate-on-scroll{
   opacity:0;
   transform:translateY(14px);
