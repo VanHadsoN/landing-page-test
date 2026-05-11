@@ -192,25 +192,9 @@
       </section>
 
       <section class="participants section" id="participants">
-        <div class="container">
+        <div class="container participants__grid">
           <div class="section__head participants__head">
             <h2 class="section__title animate-on-scroll">Участники турнира</h2>
-
-            <div class="participants__controls" aria-label="Навигация по участникам">
-              <button class="icon-btn" type="button" data-participants-prev aria-label="Предыдущий участник">
-                <span aria-hidden="true">‹</span>
-              </button>
-
-              <div class="counter" aria-live="polite">
-                <span data-participants-current>1</span>
-                <span class="counter__sep">/</span>
-                <span data-participants-total>6</span>
-              </div>
-
-              <button class="icon-btn" type="button" data-participants-next aria-label="Следующий участник">
-                <span aria-hidden="true">›</span>
-              </button>
-            </div>
           </div>
 
           <div class="carousel animate-on-scroll" data-participants>
@@ -254,6 +238,22 @@
                 </li>
               </ul>
             </div>
+          </div>
+
+          <div class="participants__controls" aria-label="Навигация по участникам">
+            <button class="icon-btn" type="button" data-participants-prev aria-label="Предыдущий участник">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <div class="counter" aria-live="polite">
+              <span data-participants-current>1</span>
+              <span class="counter__sep">/</span>
+              <span data-participants-total>6</span>
+            </div>
+
+            <button class="icon-btn" type="button" data-participants-next aria-label="Следующий участник">
+              <span aria-hidden="true">›</span>
+            </button>
           </div>
         </div>
       </section>
